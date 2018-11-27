@@ -1,4 +1,4 @@
-package com.sgcharts.beanvalidationexample.ch01;
+package com.sgcharts.beanvalidationexample.chapter01;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

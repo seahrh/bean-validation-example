@@ -1,4 +1,4 @@
-package com.sgcharts.beanvalidationexample.ch01;
+package com.sgcharts.beanvalidationexample.chapter01;
 
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -15,6 +15,11 @@ public class CarTest {
 
 	private static Validator validator;
 
+	/**
+	 * A Validator instance is thread-safe and may be reused multiple times.
+	 * It thus can safely be stored in a static field
+	 * and be used in the test methods to validate the different Car instances.
+	 */
 	@BeforeClass
 	public static void setUpValidator() {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
