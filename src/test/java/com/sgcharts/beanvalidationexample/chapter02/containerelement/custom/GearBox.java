@@ -1,10 +1,10 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.containerelement.custom;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.custom;
 
 //end::include[]
 
 //tag::include[]
-public class GearBox<T extends Gear> {
+class GearBox<T extends Gear> {
 
 	private final T gear;
 

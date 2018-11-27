@@ -1,10 +1,10 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.containerelement.custom;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.custom;
 
 //end::include[]
 
 //tag::include[]
-public class Gear {
+class Gear {
 	private final Integer torque;
 
 	public Gear(Integer torque) {
