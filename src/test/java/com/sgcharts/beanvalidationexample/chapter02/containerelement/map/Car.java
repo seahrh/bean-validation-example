@@ -1,5 +1,5 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.containerelement.map;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.map;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.validation.constraints.NotNull;
 
 //tag::include[]
-public class Car {
+class Car {
 
 	public enum FuelConsumption {
 		CITY,

@@ -1,4 +1,4 @@
-package org.hibernate.validator.referenceguide.chapter02.containerelement.map;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.map;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
