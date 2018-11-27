@@ -1,12 +1,12 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.containerelement.optional;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.optional;
 
 //end::include[]
 
 import java.util.Optional;
 
 //tag::include[]
-public class Car {
+class Car {
 
 	private Optional<@MinTowingCapacity(1000) Integer> towingCapacity = Optional.empty();
 
