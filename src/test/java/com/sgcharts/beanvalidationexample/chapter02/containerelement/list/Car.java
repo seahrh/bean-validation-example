@@ -1,5 +1,5 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.containerelement.list;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.list;
 
 //end::include[]
 
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //tag::include[]
-public class Car {
+class Car {
 
 	private List<@ValidPart String> parts = new ArrayList<>();
 

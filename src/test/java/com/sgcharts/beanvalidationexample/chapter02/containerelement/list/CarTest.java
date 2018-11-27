@@ -1,4 +1,4 @@
-package org.hibernate.validator.referenceguide.chapter02.containerelement.list;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.list;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package org.hibernate.validator.referenceguide.chapter02.containerelement.list;
+package com.sgcharts.beanvalidationexample.chapter02.containerelement.list;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
