@@ -1,5 +1,5 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.validation;
+package com.sgcharts.beanvalidationexample.chapter02.validation;
 
 //end::include[]
 
@@ -7,7 +7,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 
 //tag::include[]
-public class Car {
+class Car {
 
 	private String manufacturer;
 

@@ -1,5 +1,5 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.objectgraph;
+package com.sgcharts.beanvalidationexample.chapter02.objectgraph;
 
 //end::include[]
 
@@ -7,7 +7,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 //tag::include[]
-public class Car {
+class Car {
 
 	@NotNull
 	@Valid

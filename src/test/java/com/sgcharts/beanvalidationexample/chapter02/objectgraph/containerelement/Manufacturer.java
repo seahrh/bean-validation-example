@@ -1,12 +1,12 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.objectgraph.containerelement;
+package com.sgcharts.beanvalidationexample.chapter02.objectgraph.containerelement;
 
 //end::include[]
 
 import javax.validation.constraints.NotNull;
 
 //tag::include[]
-public class Manufacturer {
+class Manufacturer {
 
 	@NotNull
 	private String name;

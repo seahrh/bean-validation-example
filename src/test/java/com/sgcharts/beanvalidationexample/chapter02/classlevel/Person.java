@@ -1,4 +1,4 @@
-package org.hibernate.validator.referenceguide.chapter02.classlevel;
+package com.sgcharts.beanvalidationexample.chapter02.classlevel;
 
-public class Person {
+class Person {
 }

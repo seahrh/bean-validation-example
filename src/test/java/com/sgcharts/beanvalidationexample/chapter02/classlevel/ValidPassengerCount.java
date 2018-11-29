@@ -1,4 +1,4 @@
-package org.hibernate.validator.referenceguide.chapter02.classlevel;
+package com.sgcharts.beanvalidationexample.chapter02.classlevel;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

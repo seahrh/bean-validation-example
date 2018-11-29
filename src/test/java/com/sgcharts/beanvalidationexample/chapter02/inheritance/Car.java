@@ -1,12 +1,12 @@
 //tag::include[]
-package org.hibernate.validator.referenceguide.chapter02.inheritance;
+package com.sgcharts.beanvalidationexample.chapter02.inheritance;
 
 //end::include[]
 
 import javax.validation.constraints.NotNull;
 
 //tag::include[]
-public class Car {
+class Car {
 
 	private String manufacturer;
 
