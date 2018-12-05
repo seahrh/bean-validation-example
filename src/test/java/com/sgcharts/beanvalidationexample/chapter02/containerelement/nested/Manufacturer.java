@@ -11,6 +11,8 @@ class Manufacturer {
 	@NotNull
 	private String name;
 
-	//...
+	Manufacturer(String name) {
+		this.name = name;
+	}
 }
 //end::include[]

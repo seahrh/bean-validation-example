@@ -13,6 +13,8 @@ class Car {
 	private Map<@NotNull Part, List<@NotNull Manufacturer>> partManufacturers =
 			new HashMap<>();
 
-	//...
+	void put(Part part, List<Manufacturer> manufacturers) {
+		partManufacturers.put(part, manufacturers);
+	}
 }
 //end::include[]
