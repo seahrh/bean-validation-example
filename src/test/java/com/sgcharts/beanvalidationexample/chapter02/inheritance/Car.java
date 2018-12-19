@@ -10,7 +10,11 @@ class Car {
 
 	private String manufacturer;
 
-	@NotNull
+	Car(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+
+	@NotNull(message = "{com.sgcharts.beanvalidationexample.chapter02.inheritance.Car.manufacturer.notNull.message}")
 	public String getManufacturer() {
 		return manufacturer;
 	}
