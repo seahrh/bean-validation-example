@@ -11,6 +11,8 @@ class Part {
 	@NotNull
 	private String name;
 
-	//...
+	Part(String name) {
+		this.name = name;
+	}
 }
 //end::include[]

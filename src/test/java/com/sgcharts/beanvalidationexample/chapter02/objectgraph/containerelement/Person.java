@@ -11,6 +11,8 @@ class Person {
 	@NotNull
 	private String name;
 
-	//...
+	Person(String name) {
+		this.name = name;
+	}
 }
 //end::include[]

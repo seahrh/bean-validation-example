@@ -14,10 +14,16 @@ import javax.validation.constraints.NotNull;
 //tag::include[]
 class Car {
 
-	private List<@NotNull @Valid Person> passengers = new ArrayList<Person>();
+	private List<@NotNull @Valid Person> passengers = new ArrayList<>();
 
 	private Map<@Valid Part, List<@Valid Manufacturer>> partManufacturers = new HashMap<>();
 
-	//...
+	void addPassenger(Person passenger) {
+		this.passengers.add(passenger);
+	}
+
+	void addPart(Part part, List<Manufacturer> manufacturers) {
+		this.partManufacturers.put(part, manufacturers);
+	}
 }
 //end::include[]
