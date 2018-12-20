@@ -7,8 +7,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -36,12 +34,12 @@ public class CarTest {
 
 	@Test
 	public void when_driver_is_null_then_invalid() {
-		Person driver = null;
-		Car car = new Car(driver);
+		Car car = new Car(null);
 		Set<ConstraintViolation<Car>> constraintViolations = validator.validate( car );
 		assertEquals( 1, constraintViolations.size() );
+		ConstraintViolation cv = constraintViolations.iterator().next();
 		assertEquals( "driver must not be null",
-				constraintViolations.iterator().next().getMessage() );
+				cv.getPropertyPath() + " " + cv.getMessage() );
 	}
 
 	@Test
@@ -50,8 +48,9 @@ public class CarTest {
 		Car car = new Car(driver);
 		Set<ConstraintViolation<Car>> constraintViolations = validator.validate( car );
 		assertEquals( 1, constraintViolations.size() );
-		assertEquals( "name must not be null",
-				constraintViolations.iterator().next().getMessage() );
+		ConstraintViolation cv = constraintViolations.iterator().next();
+		assertEquals( "driver.name must not be null",
+				cv.getPropertyPath() + " " + cv.getMessage() );
 	}
 
 }

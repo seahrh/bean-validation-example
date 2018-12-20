@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 //tag::include[]
 class Person {
 
-	@NotNull(message = "name must not be null")
+	@NotNull
 	private String name;
 
 	Person(String name) {
