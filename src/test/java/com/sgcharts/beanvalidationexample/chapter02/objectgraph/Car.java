@@ -9,11 +9,13 @@ import javax.validation.constraints.NotNull;
 //tag::include[]
 class Car {
 
-	@NotNull
+	@NotNull(message = "driver must not be null")
 	@Valid
 	private Person driver;
 
-	//...
+	Car(Person driver) {
+		this.driver = driver;
+	}
 }
 //end::include[]
 
