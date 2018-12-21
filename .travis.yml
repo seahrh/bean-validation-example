@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - oraclejdk8
+
+# running in container causes test failures and 2x-3x longer build, use standalone instances
+sudo: required
+script: mvn test -B
+
+# cache between builds
+cache:
+  directories:
+    - $HOME/.m2
