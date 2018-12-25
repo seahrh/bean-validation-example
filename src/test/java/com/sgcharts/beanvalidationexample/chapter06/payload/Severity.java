@@ -3,7 +3,7 @@ package com.sgcharts.beanvalidationexample.chapter06.payload;
 import javax.validation.Payload;
 
 //tag::include[]
-class Severity {
+public class Severity {
 	public interface Info extends Payload {
 	}
 
