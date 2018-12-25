@@ -19,7 +19,6 @@ public class ValidPassengerCountValidator
 		if ( car == null ) {
 			return true;
 		}
-
 		return car.getPassengers().size() <= car.getSeatCount();
 	}
 }

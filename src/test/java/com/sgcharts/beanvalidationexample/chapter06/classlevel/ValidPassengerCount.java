@@ -20,8 +20,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface ValidPassengerCount {
 
-	String message() default "{org.hibernate.validator.referenceguide.chapter06.classlevel." +
-			"ValidPassengerCount.message}";
+	String message() default "{org.hibernate.validator.referenceguide.chapter06.classlevel.ValidPassengerCount.message}";
 
 	Class<?>[] groups() default { };
 
