@@ -1,0 +1,35 @@
+//tag::include[]
+package com.sgcharts.beanvalidationexample.chapter06.custompath;
+
+//end::include[]
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
+//tag::include[]
+public class ValidPassengerCountValidator
+		implements ConstraintValidator<ValidPassengerCount, Car> {
+
+	@Override
+	public void initialize(ValidPassengerCount constraintAnnotation) {
+	}
+
+	@Override
+	public boolean isValid(Car car, ConstraintValidatorContext constraintValidatorContext) {
+		if ( car == null ) {
+			return true;
+		}
+
+		boolean isValid = car.getPassengers().size() <= car.getSeatCount();
+
+		if ( !isValid ) {
+			constraintValidatorContext.disableDefaultConstraintViolation();
+			constraintValidatorContext
+					.buildConstraintViolationWithTemplate( "{my.custom.template}" )
+					.addPropertyNode( "passengers" ).addConstraintViolation();
+		}
+
+		return isValid;
+	}
+}
+//end::include[]
