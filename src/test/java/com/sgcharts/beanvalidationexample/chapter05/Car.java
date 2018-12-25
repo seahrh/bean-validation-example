@@ -18,7 +18,7 @@ public class Car {
 	@Size(min = 2, max = 14)
 	private String licensePlate;
 
-	@Min(2)
+	@Min(value = 2, message = "seatCount must be greater than or equal to {value}")
 	private int seatCount;
 
 	@AssertTrue(
