@@ -25,8 +25,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = { })
 public @interface MyFuture {
 
-	String message() default "{org.hibernate.validator.referenceguide.chapter06.MyFuture." +
-			"message}";
+	String message() default "{org.hibernate.validator.referenceguide.chapter06.MyFuture.message}";
 
 	Class<?>[] groups() default { };
 
@@ -38,7 +37,6 @@ public @interface MyFuture {
 	@Retention(RUNTIME)
 	@Documented
 	@interface List {
-
 		MyFuture[] value();
 	}
 }
