@@ -1,48 +1,66 @@
 package com.sgcharts.beanvalidationexample.chapter06.constraintvalidatorpayload;
 
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
 import org.hibernate.validator.HibernateValidator;
-import org.hibernate.validator.HibernateValidatorFactory;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-@SuppressWarnings("unused")
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+
 public class ConstraintValidatorPayloadTest {
 
-	@Test
-	public void setConstraintValidatorPayloadDuringValidatorFactoryInitialization() {
-		//tag::setConstraintValidatorPayloadDuringValidatorFactoryInitialization[]
-		ValidatorFactory validatorFactory = Validation.byProvider( HibernateValidator.class )
-				.configure()
-				.constraintValidatorPayload( "US" )
-				.buildValidatorFactory();
+    private static Validator validatorUs;
+    private static Validator validatorFr;
 
-		Validator validator = validatorFactory.getValidator();
-		//end::setConstraintValidatorPayloadDuringValidatorFactoryInitialization[]
-	}
+    @BeforeClass
+    public static void setUp() {
+        validatorUs = Validation.byProvider(HibernateValidator.class)
+                .configure()
+                .constraintValidatorPayload("US")
+                .buildValidatorFactory().getValidator();
+        validatorFr = Validation.byProvider(HibernateValidator.class)
+                .configure()
+                .constraintValidatorPayload("FR")
+                .buildValidatorFactory().getValidator();
+    }
 
-	@Test
-	public void setConstraintValidatorPayloadInValidatorContext() {
-		//tag::setConstraintValidatorPayloadInValidatorContext[]
-		HibernateValidatorFactory hibernateValidatorFactory = Validation.byDefaultProvider()
-				.configure()
-				.buildValidatorFactory()
-				.unwrap( HibernateValidatorFactory.class );
+    @Test
+    public void valid_us_zip_code() {
+        Address in = new Address("123456");
+        Set<ConstraintViolation<Address>> cvs = validatorUs.validate(in);
+        assertEquals(0, cvs.size());
+    }
 
-		Validator validator = hibernateValidatorFactory.usingContext()
-				.constraintValidatorPayload( "US" )
-				.getValidator();
+    @Test
+    public void given_us_zip_code_when_incorrect_length_then_invalid() {
+        Address in = new Address("12345");
+        Set<ConstraintViolation<Address>> cvs = validatorUs.validate(in);
+        assertEquals(1, cvs.size());
+        assertEquals(
+                "invalid zip code",
+                cvs.iterator().next().getMessage()
+        );
+    }
 
-		// [...] US specific validation checks
+    @Test
+    public void valid_fr_zip_code() {
+        Address in = new Address("12345");
+        Set<ConstraintViolation<Address>> cvs = validatorFr.validate(in);
+        assertEquals(0, cvs.size());
+    }
 
-		validator = hibernateValidatorFactory.usingContext()
-				.constraintValidatorPayload( "FR" )
-				.getValidator();
-
-		// [...] France specific validation checks
-
-		//end::setConstraintValidatorPayloadInValidatorContext[]
-	}
+    @Test
+    public void given_fr_zip_code_when_incorrect_length_then_invalid() {
+        Address in = new Address("123456");
+        Set<ConstraintViolation<Address>> cvs = validatorFr.validate(in);
+        assertEquals(1, cvs.size());
+        assertEquals(
+                "invalid zip code",
+                cvs.iterator().next().getMessage()
+        );
+    }
 }

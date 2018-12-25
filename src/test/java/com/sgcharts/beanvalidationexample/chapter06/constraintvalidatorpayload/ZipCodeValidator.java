@@ -16,26 +16,18 @@ public class ZipCodeValidator implements ConstraintValidator<ZipCode, String> {
 	@Override
 	public boolean isValid(String object, ConstraintValidatorContext constraintContext) {
 		if ( object == null ) {
-			return true;
+			return false;
 		}
-
-		boolean isValid = false;
-
 		String countryCode = constraintContext
 				.unwrap( HibernateConstraintValidatorContext.class )
 				.getConstraintValidatorPayload( String.class );
-
 		if ( "US".equals( countryCode ) ) {
-			// checks specific to the United States
+			return object.length() == 6;
 		}
-		else if ( "FR".equals( countryCode ) ) {
-			// checks specific to France
+		if ( "FR".equals( countryCode ) ) {
+			return object.length() == 5;
 		}
-		else {
-			// ...
-		}
-
-		return isValid;
+		return false;
 	}
 }
 //end::include[]

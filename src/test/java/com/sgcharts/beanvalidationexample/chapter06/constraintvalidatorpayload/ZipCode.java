@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Documented
 public @interface ZipCode {
 
-	String message() default "{org.hibernate.validator.referenceguide.chapter06.constraintvalidatorpayload.ZipCode.message}";
+	String message() default "{com.sgcharts.beanvalidationexample.chapter06.constraintvalidatorpayload.ZipCode.message}";
 
 	Class<?>[] groups() default { };
 
