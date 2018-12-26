@@ -2,6 +2,9 @@
 package com.sgcharts.beanvalidationexample.chapter06.constraintcomposition;
 
 
+import com.sgcharts.beanvalidationexample.chapter06.CaseMode;
+import com.sgcharts.beanvalidationexample.chapter06.CheckCase;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.NotNull;
@@ -16,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 //tag::include[]
 @NotNull
 @Size(min = 2, max = 14)
-//@CheckCase(CaseMode.UPPER)
+@CheckCase(CaseMode.UPPER)
 @Target({METHOD, FIELD, ANNOTATION_TYPE, TYPE_USE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = {})
