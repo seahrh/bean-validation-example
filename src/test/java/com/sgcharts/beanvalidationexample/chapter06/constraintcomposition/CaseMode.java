@@ -1,6 +1,6 @@
 package com.sgcharts.beanvalidationexample.chapter06.constraintcomposition;
 
-public enum CaseMode {
+enum CaseMode {
 	UPPER,
 	LOWER;
 }

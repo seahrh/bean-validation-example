@@ -1,9 +1,11 @@
 package com.sgcharts.beanvalidationexample.chapter06.constraintcomposition;
 
-public class Car {
+class Car {
 
 	@ValidLicensePlate
 	private String licensePlate;
 
-	//...
+	Car(String licensePlate) {
+		this.licensePlate = licensePlate;
+	}
 }
