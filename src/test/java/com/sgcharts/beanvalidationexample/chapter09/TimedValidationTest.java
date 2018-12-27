@@ -7,9 +7,7 @@ import org.junit.Test;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.time.Duration;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Set;
@@ -32,7 +30,8 @@ public class TimedValidationTest {
                 .getValidator();
         temporalToleranceValidator = Validation.byProvider(HibernateValidator.class)
                 .configure()
-                .temporalValidationTolerance(Duration.ofMillis(10))
+                .clockProvider(new FixedClockProvider(now))
+                .temporalValidationTolerance(Duration.ofSeconds(1))
                 .buildValidatorFactory()
                 .getValidator();
     }
@@ -76,6 +75,57 @@ public class TimedValidationTest {
         ZonedDateTime endTime = startTime.minusSeconds(1);
         Rental r = new Rental(startTime, endTime);
         Set<ConstraintViolation<Rental>> cvs = fixedClockValidator.validate( r );
+        assertEquals( 1, cvs.size() );
+        assertEquals(
+                "must be a future date",
+                cvs.iterator().next().getMessage());
+    }
+
+    @Test
+    public void given_temporal_tolerance_valid_rental() {
+        ZonedDateTime startTime = now;
+        ZonedDateTime endTime = startTime.plusSeconds(1);
+        Rental r = new Rental(startTime, endTime);
+        Set<ConstraintViolation<Rental>> cvs = temporalToleranceValidator.validate( r );
+        assertEquals( 0, cvs.size() );
+    }
+
+    @Test
+    public void when_start_time_in_tolerance_range_then_valid() {
+        ZonedDateTime startTime = now.plusSeconds(1);
+        ZonedDateTime endTime = startTime.plusSeconds(1);
+        Rental r = new Rental(startTime, endTime);
+        Set<ConstraintViolation<Rental>> cvs = temporalToleranceValidator.validate( r );
+        assertEquals( 0, cvs.size() );
+    }
+
+    @Test
+    public void when_start_time_exceeds_tolerance_range_then_invalid() {
+        ZonedDateTime startTime = now.plusSeconds(2);
+        ZonedDateTime endTime = startTime.plusSeconds(1);
+        Rental r = new Rental(startTime, endTime);
+        Set<ConstraintViolation<Rental>> cvs = temporalToleranceValidator.validate( r );
+        assertEquals( 1, cvs.size() );
+        assertEquals(
+                "must be a date in the past or in the present",
+                cvs.iterator().next().getMessage());
+    }
+
+    @Test
+    public void when_end_time_in_tolerance_range_then_valid() {
+        ZonedDateTime startTime = now;
+        ZonedDateTime endTime = startTime.minusNanos(1_000_000_000 - 1);
+        Rental r = new Rental(startTime, endTime);
+        Set<ConstraintViolation<Rental>> cvs = temporalToleranceValidator.validate( r );
+        assertEquals( 0, cvs.size() );
+    }
+
+    @Test
+    public void when_end_time_exceeds_tolerance_range_then_invalid() {
+        ZonedDateTime startTime = now;
+        ZonedDateTime endTime = startTime.minusSeconds(2);
+        Rental r = new Rental(startTime, endTime);
+        Set<ConstraintViolation<Rental>> cvs = temporalToleranceValidator.validate( r );
         assertEquals( 1, cvs.size() );
         assertEquals(
                 "must be a future date",
