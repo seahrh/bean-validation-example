@@ -2,10 +2,13 @@
 
 [![Build Status](https://travis-ci.org/seahrh/bean-validation-example.svg?branch=master)](https://travis-ci.org/seahrh/bean-validation-example)
 
+The Bean Validation API allows code reuse of validators through annotations. Validators allow the application to decide error handling by passing constraint violations.
+
 ## Goals
-- Learn how to use the Bean Validation API 2.0.
-- Added more tests of my own to verify behaviour not covered in the original examples from Hibernate Validator's reference guide<sup>[1](#1)</sup>.
-- Find out the minimum dependency set required
+Learn how to use the Bean Validation API 2.0
+- What are the features and limitations?
+- Add tests to verify behaviour not covered in the original examples from Hibernate Validator's reference guide<sup>[1](#1)</sup>
+- Find out the minimal dependency set required
 
 ## Prerequisites
 - JDK 8
