@@ -22,12 +22,11 @@ import static org.hibernate.validator.constraints.CompositionType.OR;
 @Pattern(regexp = "[a-z]")
 @Size(min = 2, max = 3)
 @ReportAsSingleViolation
-@Target({ METHOD, FIELD })
+@Target({ FIELD })
 @Retention(RUNTIME)
 @Constraint(validatedBy = { })
 public @interface PatternOrSize {
-	String message() default "{org.hibernate.validator.referenceguide.chapter11." +
-			"booleancomposition.PatternOrSize.message}";
+	String message() default "{com.sgcharts.beanvalidationexample.chapter12.booleancomposition.PatternOrSize.message}";
 
 	Class<?>[] groups() default { };
 
