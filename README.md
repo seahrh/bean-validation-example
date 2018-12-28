@@ -57,6 +57,22 @@ My personal opinion of Hibernate Validator: TLDR; yes I will definitely use it i
     1. Common business objects like `@Email`, `@CreditCardNumber`, `@Currency`
     1. Web: `@URL`, `@SafeHtml`
     1. Time: `@PastOrPresent`, `@Future`
+1. Write your own [custom validator](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#validator-customconstraints) or [compose](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-constraint-composition) a new one from existing constraints
+    1. By default, constraint composition is logical `AND`. It is also possible to configure logical [`OR` and `ALL FALSE`](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-boolean-constraint-composition)
+1. [Group constraints](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#chapter-groups) to check in stages
+    1. This mimics business processes/object lifecycles that require different validation logic in each stage
+    1. e.g. driving off a brand new car
+        1. car must have passed vehicle inspection
+        1. driver must have a license
+1. Set [dynamic error messages](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#chapter-message-interpolation)
+1. Dynamic payload
+    1. [Pass a payload to the constraint](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#validator-customconstraints-constraintannotation), so as to set the control flow of the validation
+        1. e.g. a custom constraint `@CheckCase` can have two different payloads `@CheckCase(UPPER)` or `@CheckCase(LOWER)`
+    1. [As part of `ConstraintViolation`](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-dynamic-payload)
+        1. Customise error messages e.g. suggest valid values
+        1. Provide hints to the application on how to handle the error e.g. error severity
+1. For reproducible testing, [define what is the time now](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-clock-provider) for time-related validation (such as `@Past` or `@Future` constraints)
+1. By default, validation reports all the errors found instead of stopping at the first error. Optionally the validator can be configured to [fail fast](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-fail-fast) e.g. expensive validation of large object graphs
 
 ### Limitations
 1. Do not recommend use of [method constraints](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-declaring-method-constraints)
