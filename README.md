@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/seahrh/bean-validation-example.svg?branch=master)](https://travis-ci.org/seahrh/bean-validation-example)
 
-The Bean Validation API allows code reuse of validators through annotations. Validators allow the application to decide error handling by passing constraint violations.
+The Bean Validation API allows code reuse of validators through annotations. Validators pass constraint violations to the application so that it can decide error handling.
 
 ## Goals
 Learn how to use the Bean Validation API 2.0
@@ -47,7 +47,7 @@ My personal opinion of Hibernate Validator: TLDR; yes I will definitely use it i
         1. Also works on nested containers like `Map<@NotNull Part, List<@NotNull Manufacturer>>`
         1. Custom containers require additional work by writing a `ValueExtractor`
     1. Validating the [entire class](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#validator-usingvalidator-classlevel), useful for interactions among fields e.g. the seating capacity of a car and number of passengers
-    1. Inheriting contraints from the superclass
+    1. [Inheriting contraints](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-constraint-inheritance) from the superclass
     1. Cascading validation through the [object graph](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-object-graph-validation) (when an object holds a reference to another object)
         1. Also works for containers
         1. `null` is ignored during cascaded validation
@@ -61,7 +61,7 @@ My personal opinion of Hibernate Validator: TLDR; yes I will definitely use it i
     1. By default, constraint composition is logical `AND`. It is also possible to configure logical [`OR` and `ALL FALSE`](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-boolean-constraint-composition)
 1. [Group constraints](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#chapter-groups) to check in stages
     1. This mimics business processes/object lifecycles that require different validation logic in each stage
-    1. e.g. driving off a brand new car
+    1. e.g. driving off a new car at the showroom
         1. car must have passed vehicle inspection
         1. driver must have a license
 1. Set [dynamic error messages](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#chapter-message-interpolation)
