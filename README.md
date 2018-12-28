@@ -37,6 +37,31 @@ Two dependencies required.
         <version>3.0.1-b09</version>
     </dependency>
     ```
+## Evaluation
+My personal opinion of Hibernate Validator: TLDR; yes I will definitely use it in my next Java project!
+### Features
+1. Out of the box, constraints can be declared on the following via Java annotations
+    1. [Fields](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#_field_level_constraints)
+    1. [Properties](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#_property_level_constraints) i.e. getter methods, following the JavaBean standard
+    1. Values in [standard Java containers](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#container-element-constraints) like `java.util.Iterable`, `java.util.Map` and `java.util.Optional`
+        1. Also works on nested containers like `Map<@NotNull Part, List<@NotNull Manufacturer>>`
+        1. Custom containers require additional work by writing a `ValueExtractor`
+    1. Validating the [entire class](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#validator-usingvalidator-classlevel), useful for interactions among fields e.g. the seating capacity of a car and number of passengers
+    1. Inheriting contraints from the superclass
+    1. Cascading validation through the [object graph](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-object-graph-validation) (when an object holds a reference to another object)
+        1. Also works for containers
+        1. `null` is ignored during cascaded validation
+        1.  The validation engine ensures that no infinite loops occur during cascaded validation, for example if two objects hold references to each other.
+1. Validators can check the entire object or [parts of it](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#_validator_methods) e.g. a single field
+1. List of [built-in constraints](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-builtin-constraints)
+    1. Common business objects like `@Email`, `@CreditCardNumber`, `@Currency`
+    1. Web: `@URL`, `@SafeHtml`
+    1. Time: `@PastOrPresent`, `@Future`
+
+### Limitations
+1. Do not recommend use of [method constraints](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/#section-declaring-method-constraints)
+    1. Requires an additional library that has a method interception facility, like Spring AOP
+    1. Can only used for instance methods (static methods are not supported)
 
 ## References
 <a name="1">[1]:</a> Hibernate Validator [reference guide](https://docs.jboss.org/hibernate/stable/validator/reference/en-US/html_single/) and [source code](https://github.com/hibernate/hibernate-validator/tree/master/documentation/src/test/java/org/hibernate/validator/referenceguide)
