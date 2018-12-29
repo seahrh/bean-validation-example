@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/seahrh/bean-validation-example.svg?branch=master)](https://travis-ci.org/seahrh/bean-validation-example)
 
-The Bean Validation API allows code reuse of validators through annotations. Validators pass constraint violations to the application so that it can decide error handling.
+The Bean Validation API allows code reuse of validators through annotations. Validators pass constraint violations to the application so that it can decide error handling. Despite its name, the Bean Validation API does **not** require the use of JavaBeans or Java EE.
 
 ## Goals
 Learn how to use the Bean Validation API 2.0
